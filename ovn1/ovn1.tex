@@ -1,17 +1,61 @@
 \documentclass[a4paper]{amsart}
 \usepackage[latin1]{inputenc}
 \usepackage{verbatim}
+% för att få syntax-highlighting på kod
+\usepackage{listings}
+\usepackage{color}
+
 
 \author{Daniel Bosk}
-\dedicatory{DD1314 Programmeringsteknik (prgmed),
+\dedicatory{DD13\{10,11,14\} Programmeringsteknik (prg*),
 	Kungliga Tekniska Högskolan}
 
 \title{Sammanfattning Övning 1}
-\date{1 september 2009}
+\date{21 september 2010}
+
+
+% för att skriva kod "inline" i texten.
+\newcommand{\code}[1]{\lstinline£#1£}
+% ställ in listings för att visa koden vackert
+\definecolor{bkglisting}{gray}{0.97}
+\definecolor{commentcol}{rgb}{0, 0.5, 0}
+%\lstset{language=java}
+%\lstset{language=c++}
+\lstset{language=python}
+\lstset{ %
+basicstyle=\footnotesize,       % the size of the fonts that are used for the code
+numbers=left,                   % where to put the line-numbers
+numberstyle=\footnotesize,      % the size of the fonts that are used for the line-numbers
+stepnumber=1,                   % the step between two line-numbers. If it's 1 each line will be numbered
+numbersep=5pt,                  % how far the line-numbers are from the code
+backgroundcolor=\color{bkglisting},  % choose the background color. You must add \usepackage{color}
+showspaces=false,               % show spaces adding particular underscores
+showstringspaces=false,         % underline spaces within strings
+showtabs=false,                 % show tabs within strings adding particular underscores
+frame=single,                    % adds a frame around the code
+tabsize=2,                    % sets default tabsize to 2 spaces
+captionpos=b,                   % sets the caption-position to bottom
+breaklines=true,                % sets automatic line breaking
+breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+escapeinside={\%*}{*)},          % if you want to add a comment within your code
+keywordstyle=\color{blue},
+stringstyle=\color{red},
+commentstyle=\color{commentcol}
+}
+% speciellt "språk" för att visa output
+\lstdefinelanguage{none}{
+    keywords={}
+}
+% style för att visa output
+\lstdefinestyle{text}{
+    language=none,
+    numbers=none
+}
+
 
 \begin{document}
 \maketitle
-\tableofcontents
+%\tableofcontents
 
 
 \section{Datatyper}
@@ -34,8 +78,8 @@ De datatyper som Python definierar är bl.a.
 På dessa datatyper finns operatorer definierade, t.ex. \verb'+' är en operator
 definierad för heltal. Andra operatorer som finns är \verb'+ - * / // %'. Några
 exempel (som körs i Pythons tolk från terminalen):
-\begin{verbatim}
-$ python
+\begin{lstlisting}[style=text]
+\$ python
 Python 2.2.3 (#1, Jan  5 2005, 16:36:30)
 [GCC 3.4.2] on sunos5
 Type "help", "copyright", "credits" or "license" for more information.
@@ -45,14 +89,14 @@ Type "help", "copyright", "credits" or "license" for more information.
 6
 >>> 5//3
 1
->>> 5%3
+>>> 5\%3
 2
 >>> "hej"+"svejs"
 'hejsvejs'
 >>> "hej"*3
 'hejhejhej'
 >>>
-\end{verbatim}
+\end{lstlisting}
 
 Alla operatorer är dock inte definierade för alla datatyper, en mycket kort
 och ej fullständig sammanfattning är:
@@ -69,15 +113,15 @@ och ej fullständig sammanfattning är:
 \noindent
 För att förenkla beräkningar etc. har vi något som kallas för konstanter.
 Dessa används för att underlätta när vi har återkommande värden, t.ex. \(\pi\).
-En konstant i Python skapas på följande vis \verb'PI=3.14', och kan sedan
-användas genom att man skriver \verb'PI' istället för \verb'3.14' överallt i
+En konstant i Python skapas på följande vis \code{PI=3.14}, och kan sedan
+användas genom att man skriver \code{PI} istället för \code{3.14} överallt i
 sin kod. En exempelkörning i Python kan se ut enligt följande.
-\begin{verbatim}
+\begin{lstlisting}[style=text]
 >>> PI=3.14
 >>> 2*PI
 6.2800000000000002
 >>>
-\end{verbatim}
+\end{lstlisting}
 
 Konstanter kan också användas för vissa restriktioner som man kanske har i sin
 kod, t.ex. att ett namn måste vara 32 tecken. Om man senare kommer på att
@@ -100,7 +144,7 @@ siffror. De får heller inte vara något av följande reserverade ord:
     return try while
 \end{verbatim}
 Viktigt att tänka på är att man skiljer på gemener och versaler, d.v.s.
-\verb'PI' är inte samma sak som \verb'Pi'.
+\code{PI} är inte samma sak som \code{Pi}.
 
 
 
@@ -112,7 +156,7 @@ kan lagra data. De fungerar precis som konstanterna, med skillnaden att man
 faktiskt kan ändra värdet som lagras i variabeln. Namnet uppfyller kravet för
 en identifierare, men får inte vara enbart versaler (för det tolkar Python som
 en konstant).
-\begin{verbatim}
+\begin{lstlisting}[style=text]
 >>> x=5
 >>> y=3
 >>> z=x*y*3
@@ -130,10 +174,10 @@ en konstant).
 >>> print z
 45
 >>>
-\end{verbatim}
-Notera att värdet på \verb'z' inte ändras när vi ändrar värdet på \verb'x',
-detta för att det är värdet \verb'45' som lagras i \verb'z' och inte relationen
-\verb'x*y*3'.
+\end{lstlisting}
+Notera att värdet på \code{z} inte ändras när vi ändrar värdet på \code{x},
+detta för att det är värdet \code{45} som lagras i \code{z} och inte relationen
+\code{x*y*3}.
 
 
 
@@ -142,7 +186,7 @@ detta för att det är värdet \verb'45' som lagras i \verb'z' och inte relationen
 Ibland kan man vilja konvertera vissa typer till andra. Det kan vara att man
 läst in en sträng från tangentbordet och vill konvertera den till ett tag
 (om användaren matade in ett tal). Ett exempel i Python-tolken:
-\begin{verbatim}
+\begin{lstlisting}[style=text]
 >>> x="3.14"
 >>> pi=float(x)
 >>> print pi
@@ -154,16 +198,16 @@ Traceback (most recent call last):
 >>> print pi+2
 5.14
 >>>
-\end{verbatim}
+\end{lstlisting}
 
 Ett annat bra exempel är procentberäkningar,
-\begin{verbatim}
+\begin{lstlisting}[style=text]
 >>> 99/100*100
 0
 >>> float(99)/100*100
 99.0
 >>>
-\end{verbatim}
+\end{lstlisting}
 där man får fel svar om man inte explicit typkonverterar.
 
 
@@ -180,13 +224,13 @@ bättre ordning. De används dessutom på samma sätt.
 	g(x) &= x^2
 \end{align}
 inom matematiken skulle kunna skrivas i Python som
-\begin{verbatim}
-    def g(x):
-        return x*x
+\begin{lstlisting}
+def g(x):
+    return x*x
 
-    def f(x):
-        return 2*g(x)+3
-\end{verbatim}
+def f(x):
+    return 2*g(x)+3
+\end{lstlisting}
 
 När vi talar om funktioner består de av flera delar, funktionen består av ett 
 funktionshuvud och en funktionskropp. Funktionshuvudet är den första raden i
@@ -206,10 +250,10 @@ till.
 \noindent
 Här kommer ett exempel på ett program, \verb'O1.py', som gör någonting vettigt.
 Det beräknar kinetisk och potentiell energi för en boll.
-\verbatiminput{./O1.py}
+\lstinputlisting[language=Python]{./O1.py}
 
 En körning av detta program (från en terminal) kan se ut så här:
-\begin{verbatim}
+\begin{lstlisting}[style=text]
 $ python O1.py
 Ange bollens massa: 2
 Ange bollens höjd: 3
@@ -218,7 +262,7 @@ Bollens rörelseenergi =  16.0 Joule
 Bollens potentiella energi 58.92 Joule
 $
 
-\end{verbatim}
+\end{lstlisting}
 
 
 
