@@ -1,14 +1,4 @@
 #encoding: latin1
-# tar upp bregreppen:
-## typkonvertering
-## funktion (med returvärde)
-## aritmetiska operatorer
-## jämförelseoperatorer
-## logiska operatorer
-## while-slinga
-## for-slinga
-## range()
-## if-elif-else-sats
 
 # weight är vikten, i gram, hos ett brev.
 # rätt porto returneras.
