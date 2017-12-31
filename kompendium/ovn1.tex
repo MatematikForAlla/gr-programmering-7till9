@@ -1,0 +1,224 @@
+\chapter{Lektion 1}
+
+\section{Datatyper}
+
+Man kan säga att nästan allt i Python är av någon datatyp. Dessa datatyper
+håller Python själv reda på, men man måste även som programmerare hålla koll
+på dessa för att programmet ska fungera som man vill.
+
+De datatyper som Python definierar är bl.a.
+\begin{description}
+	\item[int] Heltal (Integers),
+	\item[float] Flyttal (Floating point numbers),
+	\item[str] Strängar (Strings).
+\end{description}
+
+
+
+\section{Aritmetiska operatorer}
+
+På dessa datatyper finns operatorer definierade, t.ex. \verb'+' är en operator
+definierad för heltal. Andra operatorer som finns är \verb'+ - * / // %'. Några
+exempel (som körs i Pythons tolk från terminalen):
+\begin{lstlisting}[style=text]
+\$ python
+Python 2.2.3 (#1, Jan  5 2005, 16:36:30)
+[GCC 3.4.2] on sunos5
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 5+5
+10
+>>> 3*2
+6
+>>> 5//3
+1
+>>> 5\%3
+2
+>>> "hej"+"svejs"
+'hejsvejs'
+>>> "hej"*3
+'hejhejhej'
+>>>
+\end{lstlisting}
+
+Alla operatorer är dock inte definierade för alla datatyper, en mycket kort
+och ej fullständig sammanfattning är:
+\begin{description}
+	\item[Heltal] kan använda operatorerna \verb'+ - * / // %',
+	\item[Flyttal] kan använda operatorerna \verb'+ - * /', heltalsdivision
+	och modulo går inte att beräkna för flyttal,
+	\item[Strängar] har bara operatorerna \verb'+ *'.
+\end{description}
+
+
+
+\section{Konstanter}
+
+För att förenkla beräkningar etc. har vi något som kallas för konstanter.
+Dessa används för att underlätta när vi har återkommande värden, t.ex. \(\pi\).
+En konstant i Python skapas på följande vis \code{PI=3.14}, och kan sedan
+användas genom att man skriver \code{PI} istället för \code{3.14} överallt i
+sin kod. En exempelkörning i Python kan se ut enligt följande.
+\begin{lstlisting}[style=text]
+>>> PI=3.14
+>>> 2*PI
+6.2800000000000002
+>>>
+\end{lstlisting}
+
+Konstanter kan också användas för vissa restriktioner som man kanske har i sin
+kod, t.ex. att ett namn måste vara 32 tecken. Om man senare kommer på att
+namnet borde kunna vara 64 tecken långt behöver man bara ändra värdet på
+konstanten\footnote{Med att ändra värde på konstanten menare jag att man ändrar
+i koden, värdet på en konstant kan inte ändras under programkörning.} istället
+för att leta upp alla ställen i koden där det används.
+
+
+
+\section{Identifierare}
+
+Vilka regler gäller då för namnet på konstanterna? De får bestå av bokstäver,
+siffror och även understreck (\verb'_'), men de får dock inte börja med
+siffror. De får heller inte vara något av följande reserverade ord:
+\begin{verbatim}
+    and assert break class continue def del elif
+    else except exec finally for from global if
+    import in is lambda not or pass print raise
+    return try while
+\end{verbatim}
+Viktigt att tänka på är att man skiljer på gemener och versaler, d.v.s.
+\code{PI} är inte samma sak som \code{Pi}.
+
+
+
+\section{Variabler}
+
+En variabel är likt en konstant en identifierare, men istället för att
+representera ett värde representerar variabeln ett minnesutrymme i vilket man
+kan lagra data. De fungerar precis som konstanterna, med skillnaden att man
+faktiskt kan ändra värdet som lagras i variabeln. Namnet uppfyller kravet för
+en identifierare, men får inte vara enbart versaler (för det tolkar Python som
+en konstant).
+\begin{lstlisting}[style=text]
+>>> x=5
+>>> y=3
+>>> z=x*y*3
+>>> print x, y, z
+5 3 45
+>>> print x
+5
+>>> print y
+3
+>>> print z
+45
+>>> x=x+1
+>>> print x
+6
+>>> print z
+45
+>>>
+\end{lstlisting}
+Notera att värdet på \code{z} inte ändras när vi ändrar värdet på \code{x},
+detta för att det är värdet \code{45} som lagras i \code{z} och inte relationen
+\code{x*y*3}.
+
+
+
+\section{Typkonvertering}
+
+Ibland kan man vilja konvertera vissa typer till andra. Det kan vara att man
+läst in en sträng från tangentbordet och vill konvertera den till ett tag
+(om användaren matade in ett tal). Ett exempel i Python-tolken:
+\begin{lstlisting}[style=text]
+>>> x="3.14"
+>>> pi=float(x)
+>>> print pi
+3.14
+>>> print x+2
+Traceback (most recent call last):
+  File "<stdin>", line 1, in ?
+  TypeError: cannot concatenate 'str' and 'int' objects
+>>> print pi+2
+5.14
+>>>
+\end{lstlisting}
+
+Ett annat bra exempel är procentberäkningar,
+\begin{lstlisting}[style=text]
+>>> 99/100*100
+0
+>>> float(99)/100*100
+99.0
+>>>
+\end{lstlisting}
+där man får fel svar om man inte explicit typkonverterar.
+
+
+
+\section{Funktioner}
+
+Funktioner utgör en viktig byggsten i programmeringen, liksom inom matematiken
+kan den användas för att dela upp större problem i mindre och bidra till en
+bättre ordning. De används dessutom på samma sätt.
+\begin{align}
+	\nonumber
+	f(x) &= 2 \cdot g(x) + 3 \\
+	\nonumber
+	g(x) &= x^2
+\end{align}
+inom matematiken skulle kunna skrivas i Python som
+\begin{lstlisting}
+def g(x):
+    return x*x
+
+def f(x):
+    return 2*g(x)+3
+\end{lstlisting}
+
+När vi talar om funktioner består de av flera delar, funktionen består av ett 
+funktionshuvud och en funktionskropp. Funktionshuvudet är den första raden i
+funktionsdefinitionen. Den består av funktionsnamn och formella parametrar.
+D.v.s.
+\[
+\overbrace{\text{def functionname(}
+	\underbrace{\text{argument1, argument2, ...}}_{\text{formella
+		parametrar}}\text{):}}^{\text{funktionshuvud}}
+\]
+Resten av funktionen är funktionskroppen, d.v.s. all kod som hör funktionen
+till.
+
+
+
+\section{Ett programexempel}
+
+Här kommer ett exempel på ett program, \verb'O1.py', som gör någonting vettigt.
+Det beräknar kinetisk och potentiell energi för en boll.
+
+\lstinputlisting[language=Python]{./O1.py}
+
+En körning av detta program (från en terminal) kan se ut så här:
+\begin{lstlisting}[style=text]
+$ python O1.py
+Ange bollens massa: 2
+Ange bollens höjd: 3
+Ange bollens hastighet: 4
+Bollens rörelseenergi =  16.0 Joule
+Bollens potentiella energi 58.92 Joule
+$
+
+\end{lstlisting}
+
+
+
+\section{Tips och kommentarer}
+
+Några punkter att tänka på:
+\begin{itemize}
+	\item Blanda aldrig språk, antingen skriver ni alla variabelnamn och
+	funktioner på engelska eller på svenska -- aldrig båda!
+	\item Använd förklarande namn till alla variabler och funktioner!
+	\item Skriv kommentarer!
+	\item Dela upp programmen i mindre delar -- funktioner! Det blir
+	lättare att följa och det blir snyggare kod, men framför allt mycket
+	enklare att programmera!
+\end{itemize}
+

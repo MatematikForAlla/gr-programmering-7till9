@@ -20,6 +20,6 @@ ord = 'Vadsomhelst'
 while ord != '':
     ord = raw_input('Ange ett ord: ');
     if palindrom(ord):
-        print ord + ' är ett palindrom'
+        print ord + ' Ã¤r ett palindrom'
     else:
-        print ord + ' är ej ett palindrom'
+        print ord + ' Ã¤r ej ett palindrom'

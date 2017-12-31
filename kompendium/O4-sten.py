@@ -58,13 +58,13 @@ class Kund:
             return 0
 
     def __str__(self):
-        return 'Förnamn: ' + self.__fnamn +'\n' + 'Efternamn: ' + str(self.__enamn) 
+        return 'FÃ¶rnamn: ' + self.__fnamn +'\n' + 'Efternamn: ' + str(self.__enamn) 
 
 
 
 
 p1 = Produkt('Omega-3',99)
-p2 = Produkt('Mellanmjölk',10)
+p2 = Produkt('MellanmjÃ¶lk',10)
 p3 = Produkt('Banan',5)
 produkterna = [p1, p2, p3]
 

@@ -58,7 +58,7 @@ while val != '0':
     print '0 - avsluta'
     print '1 - skriv ut alla konton'
     print '2 - skriv ut summan av insatta pengar'
-    print '3 - s‰tt in 50kr Ât alla!'
+    print '3 - s√§tt in 50kr √•t alla!'
     val = raw_input('Ditt val: ')
     if val == '1':
         skrivUt(kontona)

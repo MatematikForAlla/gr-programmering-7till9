@@ -1,7 +1,7 @@
 # en lista att spara kommandohistoriken i.
 history = []
-# vår dictionary som håller koll på var programmet
-# finns för att köra ett visst kommando.
+# vÃ¥r dictionary som hÃ¥ller koll pÃ¥ var programmet
+# finns fÃ¶r att kÃ¶ra ett visst kommando.
 cmds = {"ls" : "/usr/bin/ls",
     "cp" : "/usr/bin/cp",
     "mv" : "/usr/bin/mv",
@@ -18,8 +18,8 @@ cmd = raw_input("Enter command: ")
 while cmd != "":
     try:
         print cmds[cmd]
-        # koden nedan kommer aldrig inträffa om det blir
-        # en exception i cmds[cmd], då hoppar den direkt
+        # koden nedan kommer aldrig intrÃ¤ffa om det blir
+        # en exception i cmds[cmd], dÃ¥ hoppar den direkt
         # till except nedan.
         history.append(cmd)
     except KeyError:

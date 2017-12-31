@@ -1,17 +1,17 @@
 #encoding: latin1
 # tar upp bregreppen:
 ## typkonvertering
-## funktion (med returvärde)
+## funktion (med returvÃ¤rde)
 ## aritmetiska operatorer
-## jämförelseoperatorer
+## jÃ¤mfÃ¶relseoperatorer
 ## logiska operatorer
 ## while-slinga
 ## for-slinga
 ## range()
 ## if-elif-else-sats
 
-# weight är vikten, i gram, hos ett brev.
-# rätt porto returneras.
+# weight Ã¤r vikten, i gram, hos ett brev.
+# rÃ¤tt porto returneras.
 def check_postage(weight):
     ## POSTENS 1:a KLASS INRIKES BREV
     if (weight <= 20):
@@ -44,26 +44,26 @@ def check_postage(weight):
 # Huvudprogrammet
 #####################
 
-# Loopa så länge som möjligt
+# Loopa sÃ¥ lÃ¤nge som mÃ¶jligt
 while (True):
-    print "Välkommen till Brevvågen"
-    nletters = raw_input("Hur många brev vill du beräkna porto för (0 " \
-        "för att avsluta): ")
+    print "VÃ¤lkommen till BrevvÃ¥gen"
+    nletters = raw_input("Hur mÃ¥nga brev vill du berÃ¤kna porto fÃ¶r (0 " \
+        "fÃ¶r att avsluta): ")
     nletters = int(nletters)
-    # 0 för att avsluta (negativa också)
+    # 0 fÃ¶r att avsluta (negativa ocksÃ¥)
     if (nletters <= 0):
         break
     sum = 0
     for i in range(nletters):
-        w = raw_input("Hur mycket väger brev " + str(i+1) + ": ")
+        w = raw_input("Hur mycket vÃ¤ger brev " + str(i+1) + ": ")
         postage = check_postage(float(w))
         if (postage < 0):
             print "Den vikten finns inte med i portotabellen."
         else:
-            print "Du måste betala", postage, "SEK i porto."
+            print "Du mÃ¥ste betala", postage, "SEK i porto."
             sum += postage
     if (nletters > 1):
-        print "Det blir", sum, "SEK för alla brev, tack!"
+        print "Det blir", sum, "SEK fÃ¶r alla brev, tack!"
     elif (sum > 100 and nletters == 1):
-        print "Mycket pengar för ett postpaket!"
+        print "Mycket pengar fÃ¶r ett postpaket!"
 
